@@ -1,0 +1,51 @@
+{
+  "status": "data_prepared_no_models_run",
+  "seed": 20261003,
+  "selection_cutoff_day": 730,
+  "selection_features": "Only d_1 through d_730; no final-test sales used for selection.",
+  "source_sales_rows": 30490,
+  "source_price_rows": 6841121,
+  "history_days": 1941,
+  "first_sales_date": "2011-01-29",
+  "last_sales_date": "2016-05-22",
+  "panel_series": 200,
+  "pilot_series": 30,
+  "daily_panel_rows": 388200,
+  "panel_total_units": 865515,
+  "panel_price_rows": 53221,
+  "source_missing_sales": 0,
+  "source_negative_sales": 0,
+  "missing_panel_price_days": 22253,
+  "positive_sales_missing_price_days": 0,
+  "missing_price_policy": "Preserved, not imputed. Does not establish stockouts.",
+  "store_counts": {
+    "CA_1": 100,
+    "TX_1": 100
+  },
+  "category_counts": {
+    "FOODS": 102,
+    "HOUSEHOLD": 98
+  },
+  "stratum_counts": {
+    "CA_1 / FOODS_high_frequent": 11,
+    "CA_1 / FOODS_high_irregular": 11,
+    "CA_1 / FOODS_low_irregular": 10,
+    "CA_1 / FOODS_medium_frequent": 10,
+    "CA_1 / FOODS_medium_irregular": 10,
+    "CA_1 / HOUSEHOLD_high_frequent": 10,
+    "CA_1 / HOUSEHOLD_high_irregular": 8,
+    "CA_1 / HOUSEHOLD_low_irregular": 10,
+    "CA_1 / HOUSEHOLD_medium_frequent": 10,
+    "CA_1 / HOUSEHOLD_medium_irregular": 10,
+    "TX_1 / FOODS_high_frequent": 10,
+    "TX_1 / FOODS_high_irregular": 10,
+    "TX_1 / FOODS_low_irregular": 10,
+    "TX_1 / FOODS_medium_frequent": 10,
+    "TX_1 / FOODS_medium_irregular": 10,
+    "TX_1 / HOUSEHOLD_high_frequent": 10,
+    "TX_1 / HOUSEHOLD_high_irregular": 10,
+    "TX_1 / HOUSEHOLD_low_irregular": 10,
+    "TX_1 / HOUSEHOLD_medium_frequent": 10,
+    "TX_1 / HOUSEHOLD_medium_irregular": 10
+  }
+}

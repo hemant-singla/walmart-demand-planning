@@ -1,0 +1,11 @@
+{
+  "all_pass": true,
+  "n_checks": 26,
+  "failed": [],
+  "total_days": 22253,
+  "before_first_priced_week": 22253,
+  "after_first_priced_week": 0,
+  "series_with_any_missing": 83,
+  "series_missing_after_launch": 0,
+  "zero_sales_share_all_days": 0.5035188047398248
+}

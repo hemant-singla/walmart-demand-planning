@@ -1,0 +1,60 @@
+table CtxPrice
+	lineageTag: bc25746d-260d-847f-914a-88b422058484
+
+	column store_id
+		dataType: string
+		lineageTag: 734070bc-a0e0-21fc-e2a2-55d854dbcbf3
+		summarizeBy: none
+		sourceColumn: store_id
+
+		annotation SummarizationSetBy = User
+
+	column item_weeks
+		dataType: int64
+		formatString: 0
+		lineageTag: 3f6f5c92-944a-fd78-3974-b26974759474
+		summarizeBy: none
+		sourceColumn: item_weeks
+
+		annotation SummarizationSetBy = User
+
+	column share_weeks_price_changed
+		dataType: double
+		formatString: 0.0%
+		lineageTag: d16609c8-9cdb-601e-316b-8ece954de36c
+		summarizeBy: none
+		sourceColumn: share_weeks_price_changed
+
+		annotation SummarizationSetBy = User
+
+	column share_weeks_price_cut
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 925549cd-2117-1f09-c3ea-b5d019b72526
+		summarizeBy: none
+		sourceColumn: share_weeks_price_cut
+
+		annotation SummarizationSetBy = User
+
+	column median_price
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 8e0bb083-40d8-50a8-ce39-e73f83120a0a
+		summarizeBy: none
+		sourceColumn: median_price
+
+		annotation SummarizationSetBy = User
+
+	partition CtxPrice = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "CtxPrice.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Blanks = Table.ReplaceValue(Promoted, "", null, Replacer.ReplaceValue, {"item_weeks", "share_weeks_price_changed", "share_weeks_price_cut", "median_price"}),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"store_id", type text}, {"item_weeks", Int64.Type}, {"share_weeks_price_changed", type number}, {"share_weeks_price_cut", type number}, {"median_price", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

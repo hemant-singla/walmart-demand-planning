@@ -1,0 +1,108 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "0ad61e1c85fa6d01298b",
+  "position": {
+    "x": 648,
+    "y": 96,
+    "z": 4000,
+    "height": 296,
+    "width": 608,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "What we cannot claim",
+                    "textStyle": {
+                      "fontSize": "17pt",
+                      "color": "#0F7173",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• No inventory, lead-time, margin or override data: no stockout or savings claims.",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1B2A2F"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Zero sales may be censored demand.",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1B2A2F"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Two stores, two categories; sparse and new items excluded.",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1B2A2F"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Holdout is 28 days / 4 weekly lists: rule differences are within noise.",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1B2A2F"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FBF1E3'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "visualType": "textbox"
+  }
+}

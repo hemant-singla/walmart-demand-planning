@@ -1,0 +1,4 @@
+model,origin,seconds,failures,share_ANA,train_rows,train_max_target_day,config
+snaive,1647,8.962099991549621e-05,0,,,,
+ets,1647,0.050300797000090824,0,0.24,,,
+lgbm,1647,30.321688804999894,0,,574000.0,1647.0,tweedie_63

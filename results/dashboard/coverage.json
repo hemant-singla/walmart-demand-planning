@@ -1,0 +1,295 @@
+{
+ "audit": {
+  "status": "data_prepared_no_models_run",
+  "seed": 20261003,
+  "selection_cutoff_day": 730,
+  "selection_features": "Only d_1 through d_730; no final-test sales used for selection.",
+  "source_sales_rows": 30490,
+  "source_price_rows": 6841121,
+  "history_days": 1941,
+  "first_sales_date": "2011-01-29",
+  "last_sales_date": "2016-05-22",
+  "panel_series": 200,
+  "pilot_series": 30,
+  "daily_panel_rows": 388200,
+  "panel_total_units": 865515,
+  "panel_price_rows": 53221,
+  "source_missing_sales": 0,
+  "source_negative_sales": 0,
+  "missing_panel_price_days": 22253,
+  "positive_sales_missing_price_days": 0,
+  "missing_price_policy": "Preserved, not imputed. Does not establish stockouts.",
+  "store_counts": {
+   "CA_1": 100,
+   "TX_1": 100
+  },
+  "category_counts": {
+   "FOODS": 102,
+   "HOUSEHOLD": 98
+  }
+ },
+ "checkpoint1": {
+  "all_pass": true,
+  "n_checks": 26,
+  "failed": [],
+  "total_days": 22253,
+  "before_first_priced_week": 22253,
+  "after_first_priced_week": 0,
+  "series_with_any_missing": 83,
+  "series_missing_after_launch": 0,
+  "zero_sales_share_all_days": 0.5035188047398248
+ },
+ "strata": {
+  "CA_1 / FOODS_high_frequent": 11,
+  "CA_1 / FOODS_high_irregular": 11,
+  "CA_1 / FOODS_low_irregular": 10,
+  "CA_1 / FOODS_medium_frequent": 10,
+  "CA_1 / FOODS_medium_irregular": 10,
+  "CA_1 / HOUSEHOLD_high_frequent": 10,
+  "CA_1 / HOUSEHOLD_high_irregular": 8,
+  "CA_1 / HOUSEHOLD_low_irregular": 10,
+  "CA_1 / HOUSEHOLD_medium_frequent": 10,
+  "CA_1 / HOUSEHOLD_medium_irregular": 10,
+  "TX_1 / FOODS_high_frequent": 10,
+  "TX_1 / FOODS_high_irregular": 10,
+  "TX_1 / FOODS_low_irregular": 10,
+  "TX_1 / FOODS_medium_frequent": 10,
+  "TX_1 / FOODS_medium_irregular": 10,
+  "TX_1 / HOUSEHOLD_high_frequent": 10,
+  "TX_1 / HOUSEHOLD_high_irregular": 10,
+  "TX_1 / HOUSEHOLD_low_irregular": 10,
+  "TX_1 / HOUSEHOLD_medium_frequent": 10,
+  "TX_1 / HOUSEHOLD_medium_irregular": 10
+ },
+ "windows": {
+  "_note": "Written before any model fitting or tuning (checkpoint 1). Day numbers refer to M5 d_<n>. An origin T means history d_1..d_T is known and forecasts cover d_(T+1)..d_(T+28). All origins are Sundays (T mod 7 == 2).",
+  "selection_cutoff": 730,
+  "last_day": 1941,
+  "horizon": 28,
+  "weekly_eval_days": 7,
+  "holdout": {
+   "forecast_origin": 1913,
+   "forecast_days": [
+    1914,
+    1941
+   ],
+   "weekly_priority_origins": [
+    1913,
+    1920,
+    1927,
+    1934
+   ],
+   "rule": "Untouched until config/frozen_choices.json exists. Weekly origins inside the holdout use holdout actuals only as already-observed history, never for choices."
+  },
+  "forecast_tuning_origins": [
+   1661,
+   1689,
+   1717
+  ],
+  "forecast_validation_origins": [
+   1745,
+   1773,
+   1801,
+   1829,
+   1857,
+   1885
+  ],
+  "pilot_origins": [
+   1773,
+   1829,
+   1885
+  ],
+  "weekly_backtest_origins": {
+   "first": 1493,
+   "last": 1906,
+   "step": 7
+  },
+  "priority_warmup_origins": {
+   "first": 1493,
+   "last": 1577,
+   "purpose": "build out-of-sample error history only"
+  },
+  "priority_calibration_origins": {
+   "first": 1584,
+   "last": 1661,
+   "purpose": "fix large-error event threshold, interval width multiplier, signal normalisation checks"
+  },
+  "priority_validation_origins": {
+   "first": 1668,
+   "last": 1906,
+   "purpose": "choose priority-score weights and compare rules; freeze before holdout"
+  },
+  "lightgbm_training": {
+   "origin_step": 7,
+   "lookback_origins": 104,
+   "rule": "training row (t,h) used at origin T only if t+h <= T"
+  },
+  "random_priority_repeats": 200,
+  "seed": 20261003,
+  "capacities": [
+   1,
+   5,
+   10
+  ],
+  "workload_capacity": 5,
+  "interval_nominal": 0.9
+ },
+ "checks": [
+  {
+   "check": "panel: ids",
+   "observed": 200,
+   "expected": 200,
+   "pass": true
+  },
+  {
+   "check": "panel: days",
+   "observed": 1941,
+   "expected": 1941,
+   "pass": true
+  },
+  {
+   "check": "panel: rows = ids x days",
+   "observed": 388200,
+   "expected": 388200,
+   "pass": true
+  },
+  {
+   "check": "panel: duplicate id/day keys",
+   "observed": 0,
+   "expected": 0,
+   "pass": true
+  },
+  {
+   "check": "panel: duplicate store/item/week price keys",
+   "observed": 0,
+   "expected": 0,
+   "pass": true
+  },
+  {
+   "check": "panel: wide vs long cell mismatches",
+   "observed": 0,
+   "expected": 0,
+   "pass": true
+  },
+  {
+   "check": "panel: wide total = long total",
+   "observed": 865515,
+   "expected": 865515,
+   "pass": true
+  },
+  {
+   "check": "panel: join keeps rows",
+   "observed": 388200,
+   "expected": 388200,
+   "pass": true
+  },
+  {
+   "check": "panel: join keeps units",
+   "observed": 865515,
+   "expected": 865515,
+   "pass": true
+  },
+  {
+   "check": "panel: positive sales with missing price",
+   "observed": 0,
+   "expected": 0,
+   "pass": true
+  },
+  {
+   "check": "panel: null/negative units",
+   "observed": 0,
+   "expected": 0,
+   "pass": true
+  },
+  {
+   "check": "panel: selection stats match metadata",
+   "observed": 0,
+   "expected": 0,
+   "pass": true
+  },
+  {
+   "check": "panel: total units = audit",
+   "observed": 865515,
+   "expected": 865515,
+   "pass": true
+  },
+  {
+   "check": "panel: missing price days = audit",
+   "observed": 22253,
+   "expected": 22253,
+   "pass": true
+  },
+  {
+   "check": "pilot: ids",
+   "observed": 30,
+   "expected": 30,
+   "pass": true
+  },
+  {
+   "check": "pilot: days",
+   "observed": 1941,
+   "expected": 1941,
+   "pass": true
+  },
+  {
+   "check": "pilot: rows = ids x days",
+   "observed": 58230,
+   "expected": 58230,
+   "pass": true
+  },
+  {
+   "check": "pilot: duplicate id/day keys",
+   "observed": 0,
+   "expected": 0,
+   "pass": true
+  },
+  {
+   "check": "pilot: duplicate store/item/week price keys",
+   "observed": 0,
+   "expected": 0,
+   "pass": true
+  },
+  {
+   "check": "pilot: wide vs long cell mismatches",
+   "observed": 0,
+   "expected": 0,
+   "pass": true
+  },
+  {
+   "check": "pilot: wide total = long total",
+   "observed": 144060,
+   "expected": 144060,
+   "pass": true
+  },
+  {
+   "check": "pilot: join keeps rows",
+   "observed": 58230,
+   "expected": 58230,
+   "pass": true
+  },
+  {
+   "check": "pilot: join keeps units",
+   "observed": 144060,
+   "expected": 144060,
+   "pass": true
+  },
+  {
+   "check": "pilot: positive sales with missing price",
+   "observed": 0,
+   "expected": 0,
+   "pass": true
+  },
+  {
+   "check": "pilot: null/negative units",
+   "observed": 0,
+   "expected": 0,
+   "pass": true
+  },
+  {
+   "check": "pilot: selection stats match metadata",
+   "observed": 0,
+   "expected": 0,
+   "pass": true
+  }
+ ]
+}

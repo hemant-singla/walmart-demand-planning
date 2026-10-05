@@ -1,0 +1,115 @@
+table CtxStore
+	lineageTag: 26ba42a4-5426-e6f7-360d-8262d23c29e4
+
+	measure 'M5 units sold' = SUM(CtxStore[total_units])
+		formatString: #,0
+		lineageTag: 6900b474-ac79-1d95-e926-6905b1059956
+
+	measure 'M5 product-store series' = SUM(CtxStore[series])
+		formatString: #,0
+		lineageTag: db5d1e54-d702-516e-fada-e63175db4608
+
+	measure 'Store share of units' = SUM(CtxStore[share_of_units])
+		formatString: 0.0%
+		lineageTag: 76a9e5e1-e7b1-f233-6840-37317e86eb98
+
+	measure 'Growth 2012 to 2015' = AVERAGE(CtxStore[growth_2012_to_2015])
+		formatString: +0%;-0%
+		lineageTag: 08529d29-7f2f-e8b7-c1d1-e7b4a06c8c10
+
+	measure Stores = DISTINCTCOUNT(CtxStore[store_id])
+		formatString: 0
+		lineageTag: bba9e1e2-ad12-e9e9-ee95-f6c820bf3df4
+
+	column state_id
+		dataType: string
+		lineageTag: f26885a2-f1db-d5af-b301-ddeb0e30325d
+		summarizeBy: none
+		sourceColumn: state_id
+
+		annotation SummarizationSetBy = User
+
+	column store_id
+		dataType: string
+		lineageTag: 1eeb6dd6-0b18-f74c-3fb0-9efbaa14fb0e
+		summarizeBy: none
+		sourceColumn: store_id
+
+		annotation SummarizationSetBy = User
+
+	column series
+		dataType: int64
+		formatString: 0
+		lineageTag: c066a0aa-1821-c6b6-41eb-ce62502af43f
+		summarizeBy: none
+		sourceColumn: series
+
+		annotation SummarizationSetBy = User
+
+	column total_units
+		dataType: int64
+		formatString: 0
+		lineageTag: f5d4a3a8-8dd4-131b-6c20-7a63bcff9324
+		summarizeBy: none
+		sourceColumn: total_units
+
+		annotation SummarizationSetBy = User
+
+	column share_of_units
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 7528034a-09a9-d55d-e4e2-83ffc2580b1e
+		summarizeBy: none
+		sourceColumn: share_of_units
+
+		annotation SummarizationSetBy = User
+
+	column zero_share_after_launch
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 2f5e4dd1-c389-db7f-2287-e11f908e7b87
+		summarizeBy: none
+		sourceColumn: zero_share_after_launch
+
+		annotation SummarizationSetBy = User
+
+	column avg_daily_units_2012
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 032465c9-6954-12ea-bd4f-4245026f4364
+		summarizeBy: none
+		sourceColumn: avg_daily_units_2012
+
+		annotation SummarizationSetBy = User
+
+	column avg_daily_units_2015
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 7ae48793-2788-9b59-cefd-18e0912d56d1
+		summarizeBy: none
+		sourceColumn: avg_daily_units_2015
+
+		annotation SummarizationSetBy = User
+
+	column growth_2012_to_2015
+		dataType: double
+		formatString: 0.0%
+		lineageTag: c7dde420-2cd8-7114-d075-3617dd5ca587
+		summarizeBy: none
+		sourceColumn: growth_2012_to_2015
+
+		annotation SummarizationSetBy = User
+
+	partition CtxStore = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "CtxStore.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Blanks = Table.ReplaceValue(Promoted, "", null, Replacer.ReplaceValue, {"series", "total_units", "share_of_units", "zero_share_after_launch", "avg_daily_units_2012", "avg_daily_units_2015", "growth_2012_to_2015"}),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"state_id", type text}, {"store_id", type text}, {"series", Int64.Type}, {"total_units", Int64.Type}, {"share_of_units", type number}, {"zero_share_after_launch", type number}, {"avg_daily_units_2012", type number}, {"avg_daily_units_2015", type number}, {"growth_2012_to_2015", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,119 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "ed0b05ea328df564d82f",
+  "position": {
+    "x": 24,
+    "y": 96,
+    "z": 3000,
+    "height": 296,
+    "width": 608,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Recommendations",
+                    "textStyle": {
+                      "fontSize": "17pt",
+                      "color": "#0F7173",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Use LightGBM; keep ETS as a fast, less-biased fallback.",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1B2A2F"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Watch the downward bias on slow sellers (-15% holdout).",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1B2A2F"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Weekly review: use the simple rule (largest recent error or top sellers).",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1B2A2F"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Add a second list ranked by normalised error.",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1B2A2F"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Add a dormant-item flag for long zero-sales runs.",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1B2A2F"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EEF3F3'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "visualType": "textbox"
+  }
+}

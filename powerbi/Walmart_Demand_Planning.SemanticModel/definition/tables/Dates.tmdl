@@ -1,0 +1,115 @@
+table Dates
+	lineageTag: fb6fd230-338e-8314-569f-c6fdaaefe101
+
+	column d
+		dataType: int64
+		formatString: 0
+		lineageTag: f196eb6f-ce7c-ea48-63e6-a999fb157f1c
+		summarizeBy: none
+		sourceColumn: d
+
+		annotation SummarizationSetBy = User
+
+	column date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: aa6f57fa-39a5-e59a-cf30-9d7056807339
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: ef192da3-91e6-7b49-468c-2bfa10eca2c8
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = User
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: b1c9012c-b7b7-f026-cd46-7dc44923681a
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = User
+
+	column weekday
+		dataType: string
+		lineageTag: 84633173-8ef9-2006-210e-5d1498978977
+		summarizeBy: none
+		sourceColumn: weekday
+		sortByColumn: wday
+
+		annotation SummarizationSetBy = User
+
+	column wday
+		dataType: int64
+		formatString: 0
+		lineageTag: 87db31ba-f48c-1540-d521-0214f52ffe63
+		summarizeBy: none
+		sourceColumn: wday
+
+		annotation SummarizationSetBy = User
+
+	column event
+		dataType: string
+		lineageTag: dd569b91-b977-bb92-2076-bdf0126176f1
+		summarizeBy: none
+		sourceColumn: event
+
+		annotation SummarizationSetBy = User
+
+	column event_type
+		dataType: string
+		lineageTag: 5a8192a3-01c5-06a8-3718-d280d85a8378
+		summarizeBy: none
+		sourceColumn: event_type
+
+		annotation SummarizationSetBy = User
+
+	column snap_CA
+		dataType: int64
+		formatString: 0
+		lineageTag: d1d3c080-9f3c-064a-0e77-667ed73a99d8
+		summarizeBy: none
+		sourceColumn: snap_CA
+
+		annotation SummarizationSetBy = User
+
+	column snap_TX
+		dataType: int64
+		formatString: 0
+		lineageTag: 22ee917e-c80c-7cc1-a3cc-bdd07963f712
+		summarizeBy: none
+		sourceColumn: snap_TX
+
+		annotation SummarizationSetBy = User
+
+	column snap_WI
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e7948aa-62f4-6302-304c-7b42b5841794
+		summarizeBy: none
+		sourceColumn: snap_WI
+
+		annotation SummarizationSetBy = User
+
+	partition Dates = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Dates.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Blanks = Table.ReplaceValue(Promoted, "", null, Replacer.ReplaceValue, {"d", "date", "year", "month", "wday", "snap_CA", "snap_TX", "snap_WI"}),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"d", Int64.Type}, {"date", type date}, {"year", Int64.Type}, {"month", Int64.Type}, {"weekday", type text}, {"wday", Int64.Type}, {"event", type text}, {"event_type", type text}, {"snap_CA", Int64.Type}, {"snap_TX", Int64.Type}, {"snap_WI", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

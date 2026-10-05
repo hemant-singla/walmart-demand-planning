@@ -1,0 +1,28 @@
+metric,value
+status,data_prepared_no_models_run
+seed,20261003
+selection_cutoff_day,730
+selection_features,Only d_1 through d_730; no final-test sales used for selection.
+source_sales_rows,30490
+source_price_rows,6841121
+history_days,1941
+first_sales_date,2011-01-29
+last_sales_date,2016-05-22
+panel_series,200
+pilot_series,30
+daily_panel_rows,388200
+panel_total_units,865515
+panel_price_rows,53221
+source_missing_sales,0
+source_negative_sales,0
+missing_panel_price_days,22253
+positive_sales_missing_price_days,0
+missing_price_policy,"Preserved, not imputed. Does not establish stockouts."
+cp1_all_pass,True
+cp1_n_checks,26
+cp1_total_days,22253
+cp1_before_first_priced_week,22253
+cp1_after_first_priced_week,0
+cp1_series_with_any_missing,83
+cp1_series_missing_after_launch,0
+cp1_zero_sales_share_all_days,0.5035188047398248

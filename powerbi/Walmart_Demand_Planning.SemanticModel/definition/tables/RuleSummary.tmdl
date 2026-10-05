@@ -1,0 +1,102 @@
+table RuleSummary
+	lineageTag: 6576a64e-1bec-33df-0a42-bcfcba0d60bb
+
+	measure 'Captured share (mean)' = AVERAGE(RuleSummary[captured_ae_mean])
+		formatString: 0.0%
+		lineageTag: 5dc5d070-c3c3-1ee1-8e18-ec006c75bcf7
+
+	measure 'Precision (mean)' = AVERAGE(RuleSummary[precision])
+		formatString: 0%
+		lineageTag: 90739b5d-b080-332d-6526-1d5b99d62fd1
+
+	measure 'Holdout K5 combined' = CALCULATE(AVERAGE(RuleSummary[captured_ae_mean]), RuleSummary[period] = "Holdout", RuleSummary[K] = 5, RuleSummary[rule] = "Combined score (frozen)")
+		formatString: 0.0%
+		lineageTag: 24ab5f69-7326-a080-d4b5-c4ec294a4510
+
+	measure 'Holdout K5 random' = CALCULATE(AVERAGE(RuleSummary[captured_ae_mean]), RuleSummary[period] = "Holdout", RuleSummary[K] = 5, RuleSummary[rule] = "Random (200 draws)")
+		formatString: 0.0%
+		lineageTag: 106e4c23-78f6-c4d8-8439-5d1e7413c340
+
+	column period
+		dataType: string
+		lineageTag: fbaf4534-323a-c9b3-bcdb-b9d401efc409
+		summarizeBy: none
+		sourceColumn: period
+
+		annotation SummarizationSetBy = User
+
+	column rule
+		dataType: string
+		lineageTag: 6bf5bb55-0437-35da-944e-71ecab9c6ca7
+		summarizeBy: none
+		sourceColumn: rule
+
+		annotation SummarizationSetBy = User
+
+	column K
+		dataType: int64
+		formatString: 0
+		lineageTag: 3f53b7db-3ad5-5c09-c26d-93723ca601a9
+		summarizeBy: none
+		sourceColumn: K
+
+		annotation SummarizationSetBy = User
+
+	column captured_ae_mean
+		dataType: double
+		formatString: 0.0%
+		lineageTag: dabe5995-f1eb-91c1-89ab-3d1ced0cf31b
+		summarizeBy: none
+		sourceColumn: captured_ae_mean
+
+		annotation SummarizationSetBy = User
+
+	column captured_ne_mean
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 49d71147-0c22-a1a5-68c5-2a9adb9e0650
+		summarizeBy: none
+		sourceColumn: captured_ne_mean
+
+		annotation SummarizationSetBy = User
+
+	column precision
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 18d393a9-eafc-acb7-b365-6ad678da4d91
+		summarizeBy: none
+		sourceColumn: precision
+
+		annotation SummarizationSetBy = User
+
+	column recall
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 0cca0aa4-d3ff-41a9-8c59-337ea0435413
+		summarizeBy: none
+		sourceColumn: recall
+
+		annotation SummarizationSetBy = User
+
+	column weeks
+		dataType: double
+		formatString: #,0.0
+		lineageTag: ce1218da-d843-4ac9-d51a-6e211fdfba76
+		summarizeBy: none
+		sourceColumn: weeks
+
+		annotation SummarizationSetBy = User
+
+	partition RuleSummary = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "RuleSummary.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Blanks = Table.ReplaceValue(Promoted, "", null, Replacer.ReplaceValue, {"K", "captured_ae_mean", "captured_ne_mean", "precision", "recall", "weeks"}),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"period", type text}, {"rule", type text}, {"K", Int64.Type}, {"captured_ae_mean", type number}, {"captured_ne_mean", type number}, {"precision", type number}, {"recall", type number}, {"weeks", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,95 @@
+table ForecastBand
+	lineageTag: 6248fe48-e5a9-6f92-a101-581b7063dfc2
+
+	measure 'Forecast units' = IF(HASONEVALUE(AsOf[origin]) && HASONEVALUE(Series[idx]), SUM(ForecastBand[forecast]))
+		formatString: #,0.0
+		lineageTag: aa68f406-3ee3-903a-b276-853a6b0d860a
+
+	measure 'Lower 90%' = IF(HASONEVALUE(AsOf[origin]) && HASONEVALUE(Series[idx]), SUM(ForecastBand[lower]))
+		formatString: #,0.0
+		lineageTag: f3ae94a5-9869-a484-dcb1-fc37c0d72b43
+
+	measure 'Upper 90%' = IF(HASONEVALUE(AsOf[origin]) && HASONEVALUE(Series[idx]), SUM(ForecastBand[upper]))
+		formatString: #,0.0
+		lineageTag: 7ead3ab9-ee94-05a2-a021-a888f4be9da9
+
+	measure 'Forecast next 7 days' = IF(HASONEVALUE(AsOf[origin]) && HASONEVALUE(Series[idx]), CALCULATE(SUM(ForecastBand[forecast]), ForecastBand[h] <= 7))
+		formatString: #,0.0
+		lineageTag: db17643a-86eb-5a55-9675-b13bac661e9b
+
+	column origin
+		dataType: int64
+		formatString: 0
+		lineageTag: a96289b0-07c7-6051-d060-e2f9abe6a5b2
+		summarizeBy: none
+		sourceColumn: origin
+
+		annotation SummarizationSetBy = User
+
+	column idx
+		dataType: int64
+		formatString: 0
+		lineageTag: 56dbe7ea-cd3f-6b5a-452e-81bfc042155a
+		summarizeBy: none
+		sourceColumn: idx
+
+		annotation SummarizationSetBy = User
+
+	column h
+		dataType: int64
+		formatString: 0
+		lineageTag: 0962fef5-6b55-1d51-cba5-c3ad9dcc1a8a
+		summarizeBy: none
+		sourceColumn: h
+
+		annotation SummarizationSetBy = User
+
+	column d
+		dataType: int64
+		formatString: 0
+		lineageTag: a334e5e4-1dab-3c89-2953-2c1d5dd1589f
+		summarizeBy: none
+		sourceColumn: d
+
+		annotation SummarizationSetBy = User
+
+	column forecast
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 58956de2-2705-c2b8-f395-35bee9871db6
+		summarizeBy: none
+		sourceColumn: forecast
+
+		annotation SummarizationSetBy = User
+
+	column lower
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 5f59232c-14c0-799a-ab8e-a039257dcb76
+		summarizeBy: none
+		sourceColumn: lower
+
+		annotation SummarizationSetBy = User
+
+	column upper
+		dataType: double
+		formatString: #,0.0
+		lineageTag: a23383a1-7a91-3a67-e737-122126555c6e
+		summarizeBy: none
+		sourceColumn: upper
+
+		annotation SummarizationSetBy = User
+
+	partition ForecastBand = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "ForecastBand.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Blanks = Table.ReplaceValue(Promoted, "", null, Replacer.ReplaceValue, {"origin", "idx", "h", "d", "forecast", "lower", "upper"}),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"origin", Int64.Type}, {"idx", Int64.Type}, {"h", Int64.Type}, {"d", Int64.Type}, {"forecast", type number}, {"lower", type number}, {"upper", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

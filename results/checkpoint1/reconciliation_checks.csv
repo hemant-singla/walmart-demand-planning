@@ -1,0 +1,27 @@
+check,observed,expected,pass
+panel: ids,200,200,True
+panel: days,1941,1941,True
+panel: rows = ids x days,388200,388200,True
+panel: duplicate id/day keys,0,0,True
+panel: duplicate store/item/week price keys,0,0,True
+panel: wide vs long cell mismatches,0,0,True
+panel: wide total = long total,865515,865515,True
+panel: join keeps rows,388200,388200,True
+panel: join keeps units,865515,865515,True
+panel: positive sales with missing price,0,0,True
+panel: null/negative units,0,0,True
+panel: selection stats match metadata,0,0,True
+panel: total units = audit,865515,865515,True
+panel: missing price days = audit,22253,22253,True
+pilot: ids,30,30,True
+pilot: days,1941,1941,True
+pilot: rows = ids x days,58230,58230,True
+pilot: duplicate id/day keys,0,0,True
+pilot: duplicate store/item/week price keys,0,0,True
+pilot: wide vs long cell mismatches,0,0,True
+pilot: wide total = long total,144060,144060,True
+pilot: join keeps rows,58230,58230,True
+pilot: join keeps units,144060,144060,True
+pilot: positive sales with missing price,0,0,True
+pilot: null/negative units,0,0,True
+pilot: selection stats match metadata,0,0,True

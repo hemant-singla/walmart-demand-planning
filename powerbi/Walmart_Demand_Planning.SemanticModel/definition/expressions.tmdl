@@ -1,0 +1,6 @@
+/// Folder holding the dashboard CSVs (must end with a backslash). Change it if the project moves.
+expression DataFolder = "C:\Users\SAMSUNG\Desktop\Resumes\Walmart_Demand_Planning\powerbi\data\" meta [IsParameterQuery = true, Type = "Text", IsParameterQueryRequired = true]
+	lineageTag: f73fd49d-57f6-8abe-f4d4-e072adf148dc
+
+	annotation PBI_ResultType = Text
+

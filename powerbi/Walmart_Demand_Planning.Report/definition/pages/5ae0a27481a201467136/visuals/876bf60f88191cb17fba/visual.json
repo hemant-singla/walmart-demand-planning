@@ -1,0 +1,127 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "876bf60f88191cb17fba",
+  "position": {
+    "x": 24,
+    "y": 184,
+    "z": 4000,
+    "height": 252,
+    "width": 816,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AsOf"
+                    }
+                  },
+                  "Property": "asof_date"
+                }
+              },
+              "queryRef": "AsOf.asof_date",
+              "nativeQueryRef": "asof_date",
+              "active": true,
+              "displayName": "As-of week"
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RuleWeekly"
+                    }
+                  },
+                  "Property": "rule"
+                }
+              },
+              "queryRef": "RuleWeekly.rule",
+              "nativeQueryRef": "rule",
+              "displayName": "Rule"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RuleWeekly"
+                    }
+                  },
+                  "Property": "Captured share of next-week error"
+                }
+              },
+              "queryRef": "RuleWeekly.Captured share of next-week error",
+              "nativeQueryRef": "Captured share of next-week error"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Captured share by week and rule'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

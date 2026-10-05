@@ -1,0 +1,52 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "ab97843b0085f882f840",
+  "position": {
+    "x": 24,
+    "y": 50,
+    "z": 2000,
+    "height": 40,
+    "width": 1232,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Weekends run ~20% above average; FOODS sells 11%-31% more on SNAP days; stores close on Christmas; most products sell nothing on most days. Associations, not causal effects.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#0F7173"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "visualType": "textbox"
+  }
+}

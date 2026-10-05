@@ -1,0 +1,150 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "d6cf241af0140fe9dc33",
+  "position": {
+    "x": 24,
+    "y": 184,
+    "z": 6000,
+    "height": 386,
+    "width": 1232,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dates"
+                    }
+                  },
+                  "Property": "date"
+                }
+              },
+              "queryRef": "Dates.date",
+              "nativeQueryRef": "date",
+              "active": true,
+              "displayName": "Date"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SalesHistory"
+                    }
+                  },
+                  "Property": "Units sold"
+                }
+              },
+              "queryRef": "SalesHistory.Units sold",
+              "nativeQueryRef": "Units sold"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ForecastBand"
+                    }
+                  },
+                  "Property": "Forecast units"
+                }
+              },
+              "queryRef": "ForecastBand.Forecast units",
+              "nativeQueryRef": "Forecast units"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ForecastBand"
+                    }
+                  },
+                  "Property": "Lower 90%"
+                }
+              },
+              "queryRef": "ForecastBand.Lower 90%",
+              "nativeQueryRef": "Lower 90%"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ForecastBand"
+                    }
+                  },
+                  "Property": "Upper 90%"
+                }
+              },
+              "queryRef": "ForecastBand.Upper 90%",
+              "nativeQueryRef": "Upper 90%"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Daily units: actual vs LightGBM forecast and 90% range'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

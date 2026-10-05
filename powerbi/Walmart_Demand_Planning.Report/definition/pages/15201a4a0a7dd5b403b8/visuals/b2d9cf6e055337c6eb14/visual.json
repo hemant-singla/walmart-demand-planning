@@ -1,0 +1,52 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "b2d9cf6e055337c6eb14",
+  "position": {
+    "x": 24,
+    "y": 50,
+    "z": 2000,
+    "height": 40,
+    "width": 1232,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "FOODS is 69% of units; CA_3 alone sells 17%; the top 10% of series sell 54% of all units. Full M5 file via DuckDB.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#0F7173"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "visualType": "textbox"
+  }
+}

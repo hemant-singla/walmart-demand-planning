@@ -1,0 +1,52 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "6ac518b3e29835f6d662",
+  "position": {
+    "x": 24,
+    "y": 50,
+    "z": 2000,
+    "height": 40,
+    "width": 1232,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Raw ranges from past errors caught only 84-87%; widened on early weeks, they caught 90.9% (validation) and 89.3% (holdout). Weakest: irregular sellers.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#0F7173"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "visualType": "textbox"
+  }
+}

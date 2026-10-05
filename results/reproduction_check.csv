@@ -1,0 +1,27 @@
+item,match,detail
+results/checkpoint1/sql_audit.csv,True,max abs diff 0
+results/checkpoint1/sql_audit_pilot.csv,True,max abs diff 0
+results/checkpoint1/reconciliation_checks.csv,True,max abs diff 0
+results/checkpoint2/pilot_metrics.csv,True,max abs diff 0
+results/checkpoint3/tuning_metrics.csv,True,max abs diff 0
+results/checkpoint3/lgbm_choice.json,True,
+results/checkpoint3/forecast_choice.json,True,
+"backtest forecasts (60 origins, all models)",True,max abs diff 0 units (files store 5 decimals)
+results/checkpoint3/validation_metrics.csv,True,max abs diff 0
+interval width multipliers,True,"{'1': 1.05, '2': 1.1, '3': 1.1, '4': 1.15}"
+frozen choice: forecast_model,True,lgbm
+frozen choice: lgbm_config,True,tweedie_63
+frozen choice: interval_multipliers,True,"{'1': 1.05, '2': 1.1, '3': 1.1, '4': 1.15}"
+frozen choice: proposed_rule,True,"{'normalisation': 'median', 'weights': {'recent_error': 0.2, 'bias': 0.1, 'uncer"
+frozen choice: recommended_rule,True,proposed_median_0.2_0.1_0.7
+frozen choice: event threshold,True,1.442467
+results/checkpoint4/validation_rule_summary.csv,True,max abs diff 0
+results/holdout/holdout_forecast_metrics.csv,True,max abs diff 0
+results/holdout/holdout_rule_summary.csv,True,max abs diff 0
+results/analytics/sql_forecast_metrics.csv,True,max abs diff 6.22e-15
+results/dashboard/ctx_guard.csv,True,max abs diff 0
+results/dashboard/ctx_store_summary.csv,True,max abs diff 0
+results/dashboard/ctx_dept_summary.csv,True,max abs diff 0
+results/dashboard/ctx_snap.csv,True,max abs diff 0
+results/dashboard/ctx_panel_vs_m5.csv,True,max abs diff 0
+results/dashboard/review_lists.csv,True,max abs diff 0

@@ -1,0 +1,318 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "2075d1442f9fdcfb540b",
+  "position": {
+    "x": 24,
+    "y": 184,
+    "z": 4000,
+    "height": 305.6,
+    "width": 1232,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ReviewList"
+                    }
+                  },
+                  "Property": "rank"
+                }
+              },
+              "queryRef": "ReviewList.rank",
+              "nativeQueryRef": "rank",
+              "displayName": "Rank"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ReviewList"
+                    }
+                  },
+                  "Property": "series_label"
+                }
+              },
+              "queryRef": "ReviewList.series_label",
+              "nativeQueryRef": "series_label",
+              "displayName": "Series"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ReviewList"
+                    }
+                  },
+                  "Property": "volume"
+                }
+              },
+              "queryRef": "ReviewList.volume",
+              "nativeQueryRef": "volume",
+              "displayName": "Units (last 28 d)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ReviewList"
+                    }
+                  },
+                  "Property": "recent_error"
+                }
+              },
+              "queryRef": "ReviewList.recent_error",
+              "nativeQueryRef": "recent_error",
+              "displayName": "Recent error / wk"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ReviewList"
+                    }
+                  },
+                  "Property": "bias_signed"
+                }
+              },
+              "queryRef": "ReviewList.bias_signed",
+              "nativeQueryRef": "bias_signed",
+              "displayName": "Bias / wk"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ReviewList"
+                    }
+                  },
+                  "Property": "uncertainty"
+                }
+              },
+              "queryRef": "ReviewList.uncertainty",
+              "nativeQueryRef": "uncertainty",
+              "displayName": "Range width (7 d)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ReviewList"
+                    }
+                  },
+                  "Property": "forecast_next7"
+                }
+              },
+              "queryRef": "ReviewList.forecast_next7",
+              "nativeQueryRef": "forecast_next7",
+              "displayName": "Forecast next 7 d"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ReviewList"
+                    }
+                  },
+                  "Property": "suggested_investigation"
+                }
+              },
+              "queryRef": "ReviewList.suggested_investigation",
+              "nativeQueryRef": "suggested_investigation",
+              "displayName": "Suggested investigation"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "ReviewList"
+                  }
+                },
+                "Property": "rank"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10.0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10.0D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "470.0D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "ReviewList.suggested_investigation"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top 10 to review'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1e1c13b189e8fecd439a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ReviewList"
+              }
+            },
+            "Property": "top10"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "x",
+              "Entity": "ReviewList",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "x"
+                          }
+                        },
+                        "Property": "top10"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Yes'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

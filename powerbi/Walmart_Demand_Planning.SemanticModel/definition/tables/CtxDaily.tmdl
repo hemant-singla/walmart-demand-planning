@@ -1,0 +1,82 @@
+table CtxDaily
+	lineageTag: 0a852e36-c7db-f0d5-a094-787e708d28ce
+
+	measure 'Daily units' = SUM(CtxDaily[units])
+		formatString: #,0
+		lineageTag: 56cbb977-2345-91c7-d615-2761a4a44631
+
+	column date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 42503763-5d0a-da82-a945-553c1d260cae
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column d_num
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a298f07-345b-08c0-d2f8-37a91c3aee19
+		summarizeBy: none
+		sourceColumn: d_num
+
+		annotation SummarizationSetBy = User
+
+	column state_id
+		dataType: string
+		lineageTag: 9f56344b-bd63-b703-0778-03e9f779038d
+		summarizeBy: none
+		sourceColumn: state_id
+
+		annotation SummarizationSetBy = User
+
+	column store_id
+		dataType: string
+		lineageTag: 7ee90828-b63f-e824-6adc-6425dbd795ec
+		summarizeBy: none
+		sourceColumn: store_id
+
+		annotation SummarizationSetBy = User
+
+	column cat_id
+		dataType: string
+		lineageTag: 169c1684-4531-7581-f68b-57c35fbf46ea
+		summarizeBy: none
+		sourceColumn: cat_id
+
+		annotation SummarizationSetBy = User
+
+	column units
+		dataType: int64
+		formatString: 0
+		lineageTag: 71a48896-552d-9f08-598a-db48c220aec6
+		summarizeBy: none
+		sourceColumn: units
+
+		annotation SummarizationSetBy = User
+
+	column items_selling
+		dataType: int64
+		formatString: 0
+		lineageTag: bc4bb931-16fe-0473-d422-d118a25bcb7e
+		summarizeBy: none
+		sourceColumn: items_selling
+
+		annotation SummarizationSetBy = User
+
+	partition CtxDaily = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "CtxDaily.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Blanks = Table.ReplaceValue(Promoted, "", null, Replacer.ReplaceValue, {"date", "d_num", "units", "items_selling"}),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"date", type date}, {"d_num", Int64.Type}, {"state_id", type text}, {"store_id", type text}, {"cat_id", type text}, {"units", Int64.Type}, {"items_selling", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

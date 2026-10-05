@@ -1,0 +1,121 @@
+table RuleWeekly
+	lineageTag: 0d7d8631-2d99-7f29-c66f-f798e82c8be8
+
+	measure 'Captured share of next-week error' = AVERAGE(RuleWeekly[captured_ae_share])
+		formatString: 0.0%
+		lineageTag: 9e2cf2f8-105b-2849-7dfd-7cc694295278
+
+	measure 'Precision for large errors' = AVERAGE(RuleWeekly[precision])
+		formatString: 0%
+		lineageTag: 34a79617-23f2-8131-4424-e4e0f324ca52
+
+	column rule
+		dataType: string
+		lineageTag: ed90e525-8daa-5be7-8b1f-4025a21e171e
+		summarizeBy: none
+		sourceColumn: rule
+
+		annotation SummarizationSetBy = User
+
+	column origin
+		dataType: int64
+		formatString: 0
+		lineageTag: da892e78-d14b-c646-79b0-1e6c79675af0
+		summarizeBy: none
+		sourceColumn: origin
+
+		annotation SummarizationSetBy = User
+
+	column K
+		dataType: int64
+		formatString: 0
+		lineageTag: cc093072-ca87-8956-d5a9-2ae5fb567012
+		summarizeBy: none
+		sourceColumn: K
+
+		annotation SummarizationSetBy = User
+
+	column captured_ae_share
+		dataType: double
+		formatString: 0.0%
+		lineageTag: d9f8d441-c508-71b5-8587-fef2fa31e881
+		summarizeBy: none
+		sourceColumn: captured_ae_share
+
+		annotation SummarizationSetBy = User
+
+	column captured_ae_units
+		dataType: double
+		formatString: #,0.0
+		lineageTag: a9223ef1-76a2-4c49-e0fe-f6ef3e8ff3ba
+		summarizeBy: none
+		sourceColumn: captured_ae_units
+
+		annotation SummarizationSetBy = User
+
+	column total_ae_units
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 44fa1461-a44f-a571-e482-5e62647a101a
+		summarizeBy: none
+		sourceColumn: total_ae_units
+
+		annotation SummarizationSetBy = User
+
+	column captured_ne_share
+		dataType: double
+		formatString: 0.0%
+		lineageTag: f30ffa98-d298-188f-0041-278862e17f4c
+		summarizeBy: none
+		sourceColumn: captured_ne_share
+
+		annotation SummarizationSetBy = User
+
+	column precision
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 68eab9bd-fe8a-4712-f4f5-0efbccc6aece
+		summarizeBy: none
+		sourceColumn: precision
+
+		annotation SummarizationSetBy = User
+
+	column recall
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 29d28721-c78a-f7f2-def6-e59eb9df06eb
+		summarizeBy: none
+		sourceColumn: recall
+
+		annotation SummarizationSetBy = User
+
+	column events
+		dataType: int64
+		formatString: 0
+		lineageTag: f6b53a44-040d-c651-1f28-206db2e757fa
+		summarizeBy: none
+		sourceColumn: events
+
+		annotation SummarizationSetBy = User
+
+	column period
+		dataType: string
+		lineageTag: 7397971a-3f84-c4e1-5b8a-fad1cf5d2f51
+		summarizeBy: none
+		sourceColumn: period
+
+		annotation SummarizationSetBy = User
+
+	partition RuleWeekly = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "RuleWeekly.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Blanks = Table.ReplaceValue(Promoted, "", null, Replacer.ReplaceValue, {"origin", "K", "captured_ae_share", "captured_ae_units", "total_ae_units", "captured_ne_share", "precision", "recall", "events"}),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"rule", type text}, {"origin", Int64.Type}, {"K", Int64.Type}, {"captured_ae_share", type number}, {"captured_ae_units", type number}, {"total_ae_units", type number}, {"captured_ne_share", type number}, {"precision", type number}, {"recall", type number}, {"events", Int64.Type}, {"period", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

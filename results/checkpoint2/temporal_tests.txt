@@ -1,0 +1,7 @@
+PASS test_seal
+PASS test_features_ignore_future
+PASS test_training_targets_before_origin
+PASS test_seasonal_naive_equivalence
+PASS test_ets_toy
+PASS test_metric_edges
+PASS test_weekly_windows_disjoint

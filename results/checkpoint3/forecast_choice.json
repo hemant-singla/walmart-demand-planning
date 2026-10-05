@@ -1,0 +1,42 @@
+{
+  "rule": "lowest mean RMSSE over 6 validation origins (pre-registered)",
+  "chosen_model": "lgbm",
+  "validation_origins": [
+    1745,
+    1773,
+    1801,
+    1829,
+    1857,
+    1885
+  ],
+  "mean_rmsse": {
+    "lgbm": 0.6735,
+    "ets": 0.6876,
+    "snaive": 0.8891
+  },
+  "wape": {
+    "lgbm": 0.6054,
+    "ets": 0.626,
+    "snaive": 0.7541
+  },
+  "bias": {
+    "lgbm": -0.0575,
+    "ets": -0.011,
+    "snaive": -0.0225
+  },
+  "origins_won_by_lgbm_vs_ets": 6,
+  "paired": {
+    "lgbm_minus_ets": {
+      "mean": -0.01408495811555083,
+      "share_series_origins_a_better": 0.5708333333333333
+    },
+    "lgbm_minus_snaive": {
+      "mean": -0.21555498587695732,
+      "share_series_origins_a_better": 0.8775
+    },
+    "ets_minus_snaive": {
+      "mean": -0.2014700277614065,
+      "share_series_origins_a_better": 0.8691666666666666
+    }
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "calendar.csv": {
+    "bytes": 103469,
+    "columns": [
+      "date",
+      "wm_yr_wk",
+      "weekday",
+      "wday",
+      "month",
+      "year",
+      "d",
+      "event_name_1",
+      "event_type_1",
+      "event_name_2",
+      "event_type_2",
+      "snap_CA",
+      "snap_TX",
+      "snap_WI"
+    ]
+  },
+  "daily_sales.csv.gz": {
+    "bytes": 1609567,
+    "columns": [
+      "id",
+      "item_id",
+      "dept_id",
+      "cat_id",
+      "store_id",
+      "state_id",
+      "d",
+      "units"
+    ]
+  },
+  "daily_sales_pilot.csv.gz": {
+    "bytes": 214012,
+    "columns": [
+      "id",
+      "item_id",
+      "dept_id",
+      "cat_id",
+      "store_id",
+      "state_id",
+      "d",
+      "units"
+    ]
+  },
+  "panel_metadata.csv": {
+    "bytes": 29816,
+    "columns": [
+      "id",
+      "item_id",
+      "dept_id",
+      "cat_id",
+      "store_id",
+      "state_id",
+      "selection_units",
+      "selection_nonzero_days",
+      "selection_zero_share",
+      "volume_group",
+      "pattern_group",
+      "stratum",
+      "pilot",
+      "selection_cutoff"
+    ]
+  },
+  "sales_panel.csv": {
+    "bytes": 821244,
+    "column_count": 1947,
+    "identifier_columns": [
+      "id",
+      "item_id",
+      "dept_id",
+      "cat_id",
+      "store_id",
+      "state_id"
+    ],
+    "daily_columns": {
+      "first": "d_1",
+      "last": "d_1941",
+      "count": 1941,
+      "pattern": "d_<integer>, consecutive"
+    }
+  },
+  "sales_pilot.csv": {
+    "bytes": 133079,
+    "column_count": 1947,
+    "identifier_columns": [
+      "id",
+      "item_id",
+      "dept_id",
+      "cat_id",
+      "store_id",
+      "state_id"
+    ],
+    "daily_columns": {
+      "first": "d_1",
+      "last": "d_1941",
+      "count": 1941,
+      "pattern": "d_<integer>, consecutive"
+    }
+  },
+  "sell_prices_panel.csv": {
+    "bytes": 1645996,
+    "columns": [
+      "store_id",
+      "item_id",
+      "wm_yr_wk",
+      "sell_price"
+    ]
+  },
+  "sell_prices_pilot.csv": {
+    "bytes": 241769,
+    "columns": [
+      "store_id",
+      "item_id",
+      "wm_yr_wk",
+      "sell_price"
+    ]
+  }
+}

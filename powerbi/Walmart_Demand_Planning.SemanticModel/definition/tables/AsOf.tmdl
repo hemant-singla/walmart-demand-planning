@@ -1,0 +1,52 @@
+table AsOf
+	lineageTag: 2a9585be-f960-e679-3127-610b9df93309
+
+	column origin
+		dataType: int64
+		formatString: 0
+		lineageTag: 1712778c-59f1-1042-3773-4ae3d9a8b898
+		summarizeBy: none
+		sourceColumn: origin
+
+		annotation SummarizationSetBy = User
+
+	column asof_date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 890a0a59-0026-bd13-9f48-d317e84a2c16
+		summarizeBy: none
+		sourceColumn: asof_date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column period
+		dataType: string
+		lineageTag: 2b22036a-94e9-11cc-bb6b-a1ef0dbcfd3d
+		summarizeBy: none
+		sourceColumn: period
+
+		annotation SummarizationSetBy = User
+
+	column label
+		dataType: string
+		lineageTag: 270ed172-c50f-3751-b5a2-3d1b06a88fe7
+		summarizeBy: none
+		sourceColumn: label
+
+		annotation SummarizationSetBy = User
+
+	partition AsOf = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "AsOf.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Blanks = Table.ReplaceValue(Promoted, "", null, Replacer.ReplaceValue, {"origin", "asof_date"}),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"origin", Int64.Type}, {"asof_date", type date}, {"period", type text}, {"label", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,16 @@
+{
+  "name": "WDP",
+  "dataColors": [
+    "#0F7173",
+    "#E09F3E",
+    "#9AA5A6",
+    "#3D5A80",
+    "#5B8E7D",
+    "#B5544A",
+    "#7A6C9E",
+    "#C9A227"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#1B2A2F",
+  "tableAccent": "#0F7173"
+}

@@ -1,0 +1,81 @@
+table CtxPanelVsM5
+	lineageTag: 8201ddc9-bcf1-4f1b-4714-62fe48d74f9d
+
+	measure 'Units per series-day' = AVERAGE(CtxPanelVsM5[avg_units_per_series_day])
+		formatString: 0.00
+		lineageTag: a01167cc-67e7-efb7-04d7-9d8a7e083040
+
+	measure 'Zero-sales share (avg)' = AVERAGE(CtxPanelVsM5[zero_share_after_launch])
+		formatString: 0%
+		lineageTag: d85a7e1b-81ad-6992-c286-8d84e521c6a5
+
+	measure 'Panel series' = CALCULATE(SUM(CtxPanelVsM5[series]), CtxPanelVsM5[population] = "Our 200-series panel")
+		formatString: #,0
+		lineageTag: 7dd1a694-51fe-0953-0cdb-a37135b43fcc
+
+	column population
+		dataType: string
+		lineageTag: b2139aeb-c940-99be-b39d-892d7a0c7f96
+		summarizeBy: none
+		sourceColumn: population
+
+		annotation SummarizationSetBy = User
+
+	column series
+		dataType: int64
+		formatString: 0
+		lineageTag: 131d7157-5242-e42e-a9e6-5c5d794668a5
+		summarizeBy: none
+		sourceColumn: series
+
+		annotation SummarizationSetBy = User
+
+	column total_units
+		dataType: int64
+		formatString: 0
+		lineageTag: ba78f6ef-9212-cf1c-a5f1-d6fa369768ed
+		summarizeBy: none
+		sourceColumn: total_units
+
+		annotation SummarizationSetBy = User
+
+	column avg_units_per_series_day
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 29672f89-0c99-d073-2b57-016a2f2e84d7
+		summarizeBy: none
+		sourceColumn: avg_units_per_series_day
+
+		annotation SummarizationSetBy = User
+
+	column zero_share_after_launch
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 02913f95-d426-3dc0-f2b9-fd2290538f50
+		summarizeBy: none
+		sourceColumn: zero_share_after_launch
+
+		annotation SummarizationSetBy = User
+
+	column foods_share_of_units
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 3891906e-e037-4cd2-a461-ed239ae03dea
+		summarizeBy: none
+		sourceColumn: foods_share_of_units
+
+		annotation SummarizationSetBy = User
+
+	partition CtxPanelVsM5 = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "CtxPanelVsM5.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Blanks = Table.ReplaceValue(Promoted, "", null, Replacer.ReplaceValue, {"series", "total_units", "avg_units_per_series_day", "zero_share_after_launch", "foods_share_of_units"}),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"population", type text}, {"series", Int64.Type}, {"total_units", Int64.Type}, {"avg_units_per_series_day", type number}, {"zero_share_after_launch", type number}, {"foods_share_of_units", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

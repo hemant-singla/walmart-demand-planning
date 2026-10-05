@@ -1,0 +1,81 @@
+table Series
+	lineageTag: 2362c046-e19f-36d5-a7d1-6f469c0a8cf1
+
+	column idx
+		dataType: int64
+		formatString: 0
+		lineageTag: 69bd5a26-58d2-3915-e98a-d63d938a2e12
+		summarizeBy: none
+		sourceColumn: idx
+
+		annotation SummarizationSetBy = User
+
+	column id
+		dataType: string
+		lineageTag: 046db10b-b1bb-82f5-1229-709195aa9c10
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = User
+
+	column item_id
+		dataType: string
+		lineageTag: 59000902-a2c3-5df8-0893-754e6ea8782d
+		summarizeBy: none
+		sourceColumn: item_id
+
+		annotation SummarizationSetBy = User
+
+	column dept_id
+		dataType: string
+		lineageTag: f569f612-0bc8-548b-0ae3-477c8cfff564
+		summarizeBy: none
+		sourceColumn: dept_id
+
+		annotation SummarizationSetBy = User
+
+	column cat_id
+		dataType: string
+		lineageTag: 49456e35-2ee3-a455-c43b-15c8a29d2017
+		summarizeBy: none
+		sourceColumn: cat_id
+
+		annotation SummarizationSetBy = User
+
+	column store_id
+		dataType: string
+		lineageTag: b06bd34d-c5fa-9a72-d2d9-bad4d6fe9184
+		summarizeBy: none
+		sourceColumn: store_id
+
+		annotation SummarizationSetBy = User
+
+	column volume_group
+		dataType: string
+		lineageTag: 28afcdff-2f4d-377e-df4b-31fb2903ff8d
+		summarizeBy: none
+		sourceColumn: volume_group
+
+		annotation SummarizationSetBy = User
+
+	column pattern_group
+		dataType: string
+		lineageTag: fa679f1b-7d53-222c-e792-5d4a9b7473bf
+		summarizeBy: none
+		sourceColumn: pattern_group
+
+		annotation SummarizationSetBy = User
+
+	partition Series = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Series.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Blanks = Table.ReplaceValue(Promoted, "", null, Replacer.ReplaceValue, {"idx"}),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"idx", Int64.Type}, {"id", type text}, {"item_id", type text}, {"dept_id", type text}, {"cat_id", type text}, {"store_id", type text}, {"volume_group", type text}, {"pattern_group", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

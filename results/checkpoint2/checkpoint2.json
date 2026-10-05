@@ -1,0 +1,38 @@
+{
+  "tests_passed": true,
+  "origins": [
+    1773,
+    1829,
+    1885
+  ],
+  "series": 30,
+  "metrics": [
+    {
+      "model": "ets",
+      "mean_rmsse": 0.6301,
+      "wape": 0.6262,
+      "bias": -0.0229,
+      "rmsse_undefined": 0
+    },
+    {
+      "model": "lgbm",
+      "mean_rmsse": 0.6327,
+      "wape": 0.6197,
+      "bias": -0.0814,
+      "rmsse_undefined": 0
+    },
+    {
+      "model": "snaive",
+      "mean_rmsse": 0.8211,
+      "wape": 0.7449,
+      "bias": -0.0445,
+      "rmsse_undefined": 0
+    }
+  ],
+  "runtime_s": {
+    "ets": 0.04,
+    "lgbm": 9.63,
+    "snaive": 0.0
+  },
+  "lgbm_train_max_target_le_origin": true
+}

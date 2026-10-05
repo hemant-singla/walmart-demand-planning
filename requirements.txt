@@ -1,0 +1,7 @@
+# Core (used by the pipeline)
+pandas>=2.2,<4
+numpy>=1.26,<3
+duckdb>=1.1,<2
+lightgbm==4.6.0        # pinned: results were produced with 4.6.0; 4.7.0 gave slightly different forecasts
+# Optional: only for scripts/ets_crosscheck_statsmodels.py
+statsmodels>=0.14

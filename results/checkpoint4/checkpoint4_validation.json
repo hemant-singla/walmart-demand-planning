@@ -1,0 +1,46 @@
+{
+  "frozen_at_utc": "2026-10-04T16:54:47.493104+00:00",
+  "forecast_model": "lgbm",
+  "lgbm_config": "tweedie_63",
+  "interval_multipliers": {
+    "1": 1.05,
+    "2": 1.1,
+    "3": 1.1,
+    "4": 1.15
+  },
+  "event_threshold_normalised_error": 1.44246659557508,
+  "proposed_rule": {
+    "normalisation": "median",
+    "weights": {
+      "recent_error": 0.2,
+      "bias": 0.1,
+      "uncertainty": 0.7
+    },
+    "label": "proposed_median_0.2_0.1_0.7"
+  },
+  "recommended_rule": "proposed_median_0.2_0.1_0.7",
+  "recommendation_logic": {
+    "proposed_k5_validation": 0.16442544975226583,
+    "best_simple_baseline": "recent_error",
+    "baseline_k5_validation": {
+      "volume": 0.1560003438042498,
+      "recent_error": 0.15998108079550505
+    },
+    "beats_full_window": true,
+    "split_check": {
+      "chosen_on_first_half": "proposed_median_0.0_0.1_0.9",
+      "second_half_proposed": 0.1703651161950941,
+      "second_half_volume": 0.1697896514954823,
+      "second_half_recent_error": 0.16899169216134347
+    },
+    "beats_split_check": true
+  },
+  "holdout_status": "not yet evaluated at freeze time",
+  "sha256_of_choices": "0a084296c2a7f184b3050f8083364a5f82536dce3bb42a05413e2b62be01b0ac",
+  "weekly_wins_k5": {
+    "proposed_median_0.2_0.1_0.7_beats_volume_weeks": 21,
+    "proposed_median_0.2_0.1_0.7_beats_recent_error_weeks": 18,
+    "ties_with_recent_error_weeks": 9,
+    "weeks": 35
+  }
+}

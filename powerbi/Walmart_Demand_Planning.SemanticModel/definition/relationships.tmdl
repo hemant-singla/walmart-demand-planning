@@ -1,0 +1,32 @@
+relationship 10bce1a3-5222-9564-2e70-92257451dc18
+	fromColumn: ReviewList.idx
+	toColumn: Series.idx
+
+relationship 0cd159b4-8e50-995d-0b17-907353efd498
+	fromColumn: ForecastBand.idx
+	toColumn: Series.idx
+
+relationship 81ae5190-2213-906f-b996-7424d0eee7e9
+	fromColumn: SalesHistory.idx
+	toColumn: Series.idx
+
+relationship f4a12815-a8cd-3ed6-0e8c-094c4bf750ac
+	fromColumn: ForecastBand.d
+	toColumn: Dates.d
+
+relationship 8d5f316e-8ec2-37d2-7527-8e71460a2301
+	fromColumn: SalesHistory.d
+	toColumn: Dates.d
+
+relationship 5d7b91e7-70be-c4c8-ff87-8b43901de7be
+	fromColumn: ReviewList.origin
+	toColumn: AsOf.origin
+
+relationship 877246a6-5d57-8354-fd15-a20dce74cf98
+	fromColumn: ForecastBand.origin
+	toColumn: AsOf.origin
+
+relationship cf3a1659-9016-8db9-6c2e-a286235fb039
+	fromColumn: RuleWeekly.origin
+	toColumn: AsOf.origin
+

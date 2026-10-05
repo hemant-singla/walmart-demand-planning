@@ -1,0 +1,121 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "020e57ff3994ba914549",
+  "position": {
+    "x": 24,
+    "y": 408,
+    "z": 5000,
+    "height": 296,
+    "width": 1232,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "How it was built",
+                    "textStyle": {
+                      "fontSize": "17pt",
+                      "color": "#0F7173",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Data: ",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1B2A2F",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "SHA-256-verified M5 files; DuckDB SQL loads, joins, audits (26/26) and builds company tables.",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1B2A2F"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Models: ",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1B2A2F",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "repeat-last-week, ETS, global LightGBM; 60 weekly refits using only data known that week.",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1B2A2F"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Honesty: ",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1B2A2F",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "8 leakage tests; final 28 days sealed until choices were frozen; SQL re-check 96/96, dashboard 351/351.",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#1B2A2F"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EEF3F3'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "visualType": "textbox"
+  }
+}

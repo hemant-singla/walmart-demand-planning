@@ -1,0 +1,3 @@
+period,n_rows,min_d,max_d,missing_actuals,n_series,n_origins
+validation,100800,1746,1913,0,200,6
+holdout,16800,1914,1941,0,200,1

@@ -1,0 +1,54 @@
+table CtxZeroShare
+	lineageTag: 8333c620-459d-bb09-ce62-f79dc9e3e568
+
+	measure 'Series in bin' = SUM(CtxZeroShare[series])
+		formatString: #,0
+		lineageTag: d77c2406-9075-7bad-8a46-f1f536f3cd20
+
+	column cat_id
+		dataType: string
+		lineageTag: 57739430-109a-1221-f038-c035035361ab
+		summarizeBy: none
+		sourceColumn: cat_id
+
+		annotation SummarizationSetBy = User
+
+	column zero_share_bin
+		dataType: double
+		formatString: 0.0%
+		lineageTag: d383b434-2449-d1df-0008-ea6bb650736f
+		summarizeBy: none
+		sourceColumn: zero_share_bin
+
+		annotation SummarizationSetBy = User
+
+	column series
+		dataType: int64
+		formatString: 0
+		lineageTag: b0b7fb78-48d0-0688-f970-8bc98cef26ab
+		summarizeBy: none
+		sourceColumn: series
+
+		annotation SummarizationSetBy = User
+
+	column bin_label
+		dataType: string
+		lineageTag: 92e80a9b-6bcd-de2f-9d75-8d5a58823e1d
+		summarizeBy: none
+		sourceColumn: bin_label
+
+		annotation SummarizationSetBy = User
+
+	partition CtxZeroShare = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "CtxZeroShare.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Blanks = Table.ReplaceValue(Promoted, "", null, Replacer.ReplaceValue, {"zero_share_bin", "series"}),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"cat_id", type text}, {"zero_share_bin", type number}, {"series", Int64.Type}, {"bin_label", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

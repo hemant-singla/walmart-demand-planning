@@ -1,0 +1,14 @@
+data/raw/
+data/prepared/
+*.part
+.venv/
+__pycache__/
+*.duckdb
+*.duckdb.wal
+*.zip
+outputs/
+data/derived/
+_to_delete/
+wdp_*.tgz
+powerbi/**/.pbi/cache.abf
+powerbi/**/.pbi/localSettings.json

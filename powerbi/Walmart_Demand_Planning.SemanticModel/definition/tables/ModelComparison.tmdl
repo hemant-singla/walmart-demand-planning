@@ -1,0 +1,136 @@
+table ModelComparison
+	lineageTag: c8a83831-f2aa-2baa-5157-2f08ec515609
+
+	measure 'Mean RMSSE' = AVERAGE(ModelComparison[mean_rmsse])
+		formatString: 0.000
+		lineageTag: 42708298-28af-7a7a-6f0e-a9bb4e28f497
+
+	measure 'WAPE (avg)' = AVERAGE(ModelComparison[wape])
+		formatString: 0.0%
+		lineageTag: cfdbc397-03e5-9445-e451-832d6c4deba8
+
+	measure 'Bias (avg)' = AVERAGE(ModelComparison[bias])
+		formatString: +0.0%;-0.0%
+		lineageTag: 6dfccd35-dd95-f627-50e5-f18c5bd92338
+
+	measure 'Holdout RMSSE LightGBM' = CALCULATE(AVERAGE(ModelComparison[mean_rmsse]), ModelComparison[period] = "Holdout", ModelComparison[model] = "LightGBM", ModelComparison[segment_type] = "all")
+		formatString: 0.000
+		lineageTag: 28150e20-e651-eb2b-d9c5-70fb64f2a979
+
+	measure 'Holdout RMSSE ETS' = CALCULATE(AVERAGE(ModelComparison[mean_rmsse]), ModelComparison[period] = "Holdout", ModelComparison[model] = "ETS", ModelComparison[segment_type] = "all")
+		formatString: 0.000
+		lineageTag: 48f0d2d8-1bbc-0f74-a3bd-021934be10e0
+
+	measure 'Holdout RMSSE naive' = CALCULATE(AVERAGE(ModelComparison[mean_rmsse]), ModelComparison[period] = "Holdout", ModelComparison[model] = "Seasonal naive", ModelComparison[segment_type] = "all")
+		formatString: 0.000
+		lineageTag: d679e62f-49e8-077f-9ca8-885bbcd998cb
+
+	column period
+		dataType: string
+		lineageTag: 55000760-b72c-2d33-d7a2-e0a8e65526d6
+		summarizeBy: none
+		sourceColumn: period
+
+		annotation SummarizationSetBy = User
+
+	column model
+		dataType: string
+		lineageTag: c6c88997-3c2b-d67d-66bb-7a0b83376aab
+		summarizeBy: none
+		sourceColumn: model
+
+		annotation SummarizationSetBy = User
+
+	column segment_type
+		dataType: string
+		lineageTag: d0cd6a42-605b-580f-674f-076186250944
+		summarizeBy: none
+		sourceColumn: segment_type
+
+		annotation SummarizationSetBy = User
+
+	column segment
+		dataType: string
+		lineageTag: 93275467-5b08-9fd1-8843-8da7ac56208a
+		summarizeBy: none
+		sourceColumn: segment
+		sortByColumn: segment_order
+
+		annotation SummarizationSetBy = User
+
+	column mean_rmsse
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 31ba9db5-9b06-71bb-c14a-388c1e119e75
+		summarizeBy: none
+		sourceColumn: mean_rmsse
+
+		annotation SummarizationSetBy = User
+
+	column median_rmsse
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 77547c66-3b7b-4980-acfe-605bbaf15e2a
+		summarizeBy: none
+		sourceColumn: median_rmsse
+
+		annotation SummarizationSetBy = User
+
+	column wape
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 773bd1c0-79b2-fa22-559c-931d74729c38
+		summarizeBy: none
+		sourceColumn: wape
+
+		annotation SummarizationSetBy = User
+
+	column bias
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 601dbd17-c30c-68cc-7632-0fcedca9f002
+		summarizeBy: none
+		sourceColumn: bias
+
+		annotation SummarizationSetBy = User
+
+	column actual_units
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 046f9e03-ecae-e537-e2ad-dff8d2575430
+		summarizeBy: none
+		sourceColumn: actual_units
+
+		annotation SummarizationSetBy = User
+
+	column rmsse_undefined
+		dataType: int64
+		formatString: 0
+		lineageTag: 958bec70-45a5-97b5-fdd7-c59b42f0d54e
+		summarizeBy: none
+		sourceColumn: rmsse_undefined
+
+		annotation SummarizationSetBy = User
+
+	column segment_order
+		dataType: int64
+		formatString: 0
+		lineageTag: acacd243-f273-7468-2a81-ef0d3428963b
+		summarizeBy: none
+		sourceColumn: segment_order
+
+		annotation SummarizationSetBy = User
+
+	partition ModelComparison = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "ModelComparison.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Blanks = Table.ReplaceValue(Promoted, "", null, Replacer.ReplaceValue, {"mean_rmsse", "median_rmsse", "wape", "bias", "actual_units", "rmsse_undefined", "segment_order"}),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"period", type text}, {"model", type text}, {"segment_type", type text}, {"segment", type text}, {"mean_rmsse", type number}, {"median_rmsse", type number}, {"wape", type number}, {"bias", type number}, {"actual_units", type number}, {"rmsse_undefined", Int64.Type}, {"segment_order", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

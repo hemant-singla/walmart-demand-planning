@@ -1,0 +1,9 @@
+{
+  "chosen_config": "tweedie_63",
+  "rule": "lowest mean RMSSE on tuning origins",
+  "tuning_origins": [
+    1661,
+    1689,
+    1717
+  ]
+}

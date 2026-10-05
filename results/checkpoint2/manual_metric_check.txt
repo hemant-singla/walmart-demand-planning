@@ -1,0 +1,3 @@
+manual snaive forecast == pipeline: True  actual match: True
+manual RMSSE 1.049622 pipeline-input RMSSE 1.049622
+manual ETS WAPE 0.626205

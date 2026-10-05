@@ -1,0 +1,73 @@
+{
+  "rule": "lowest mean RMSSE over 6 validation origins (pre-registered)",
+  "chosen_model": "lgbm",
+  "validation_origins": [
+    1745,
+    1773,
+    1801,
+    1829,
+    1857,
+    1885
+  ],
+  "mean_rmsse": {
+    "lgbm": 0.6735,
+    "ets": 0.6876,
+    "snaive": 0.8891
+  },
+  "wape": {
+    "lgbm": 0.6054,
+    "ets": 0.626,
+    "snaive": 0.7541
+  },
+  "bias": {
+    "lgbm": -0.0575,
+    "ets": -0.011,
+    "snaive": -0.0225
+  },
+  "origins_won_by_lgbm_vs_ets": 6,
+  "paired": {
+    "lgbm_minus_ets": {
+      "mean": -0.01408495811555083,
+      "share_series_origins_a_better": 0.5708333333333333
+    },
+    "lgbm_minus_snaive": {
+      "mean": -0.21555498587695732,
+      "share_series_origins_a_better": 0.8775
+    },
+    "ets_minus_snaive": {
+      "mean": -0.2014700277614065,
+      "share_series_origins_a_better": 0.8691666666666666
+    }
+  },
+  "interval_nominal": 0.9,
+  "width_multipliers_by_horizon_week": {
+    "1": 1.05,
+    "2": 1.1,
+    "3": 1.1,
+    "4": 1.15
+  },
+  "calibration_raw_coverage_by_week": {
+    "1": 0.874,
+    "2": 0.865,
+    "3": 0.856,
+    "4": 0.843
+  },
+  "validation_coverage_all": 0.9092,
+  "validation_coverage_by_segment": {
+    "all": 0.909,
+    "volume_group=high": 0.906,
+    "volume_group=low": 0.922,
+    "volume_group=medium": 0.905,
+    "pattern_group=frequent": 0.904,
+    "pattern_group=irregular": 0.912,
+    "store_id=CA_1": 0.917,
+    "store_id=TX_1": 0.901,
+    "cat_id=FOODS": 0.902,
+    "cat_id=HOUSEHOLD": 0.916,
+    "b=1": 0.898,
+    "b=2": 0.905,
+    "b=3": 0.912,
+    "b=4": 0.921,
+    "weekly_validation_h1-7": 0.904
+  }
+}

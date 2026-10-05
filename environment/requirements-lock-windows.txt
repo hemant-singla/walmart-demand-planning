@@ -1,0 +1,11 @@
+# Packages present in the user's Windows .venv (Python 3.14.4) when checkpoint4_priority.py and run_sql.py ran
+# successfully on 2026-10-04. Read from .venv/Lib/site-packages; note lightgbm 4.7.0 here vs 4.6.0 in the Linux runs.
+duckdb==1.5.6
+lightgbm==4.7.0
+numpy==2.5.3
+pandas==2.3.3
+scikit-learn==1.9.1
+scipy==1.18.1
+statsmodels==0.15.0
+streamlit==1.65.0
+pyarrow==25.0.1

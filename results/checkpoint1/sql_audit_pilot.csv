@@ -1,0 +1,2 @@
+n_rows,n_ids,n_days,min_d,max_d,total_units,null_units,neg_units,dup_id_day,dup_price_key,dup_calendar_day,wide_long_rows,wide_total_units,wide_long_mismatch,joined_rows,joined_units,missing_calendar,missing_price_days,positive_sales_missing_price,ids_not_in_metadata,selection_units_mismatch
+58230,30,1941,1,1941,144060,0,0,0,0,0,58230,144060,0,58230,144060,0,3248,0,0,0

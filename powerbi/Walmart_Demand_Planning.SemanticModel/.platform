@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Walmart_Demand_Planning"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "60872a1b-7211-f9c9-70c7-640690cebe10"
+  }
+}

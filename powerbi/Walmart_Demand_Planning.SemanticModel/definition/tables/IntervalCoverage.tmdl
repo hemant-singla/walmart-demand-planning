@@ -1,0 +1,106 @@
+table IntervalCoverage
+	lineageTag: 7369cdcd-a36b-6559-aa7e-5f8a090eb02e
+
+	measure 'Coverage (avg)' = AVERAGE(IntervalCoverage[coverage])
+		formatString: 0.0%
+		lineageTag: 23c1f625-5ed4-9927-5478-5d46e7398e50
+
+	measure 'Holdout coverage' = CALCULATE(AVERAGE(IntervalCoverage[coverage]), IntervalCoverage[period] = "Holdout (calibrated)", IntervalCoverage[slice] = "all")
+		formatString: 0.0%
+		lineageTag: 6ea7ab3d-4a91-427e-e6e6-94ac33f7ac48
+
+	measure 'Avg range width (units/day)' = AVERAGE(IntervalCoverage[mean_width])
+		formatString: 0.0
+		lineageTag: d402aa34-f308-6675-85e9-f1c17c5efb22
+
+	column slice
+		dataType: string
+		lineageTag: c3ad8e46-933a-fee2-0b89-46fc92c3ecd0
+		summarizeBy: none
+		sourceColumn: slice
+
+		annotation SummarizationSetBy = User
+
+	column coverage
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 2d95ef84-2987-bd23-b428-175e2eb7f972
+		summarizeBy: none
+		sourceColumn: coverage
+
+		annotation SummarizationSetBy = User
+
+	column mean_width
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 801f37fc-494b-f7de-d745-6ffce033fd92
+		summarizeBy: none
+		sourceColumn: mean_width
+
+		annotation SummarizationSetBy = User
+
+	column n
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 2072ba45-58c2-c454-be49-4aa757fd69e9
+		summarizeBy: none
+		sourceColumn: n
+
+		annotation SummarizationSetBy = User
+
+	column undefined
+		dataType: double
+		formatString: #,0.0
+		lineageTag: ce6a2d72-22ef-5c86-fd83-b8ca96d45014
+		summarizeBy: none
+		sourceColumn: undefined
+
+		annotation SummarizationSetBy = User
+
+	column period
+		dataType: string
+		lineageTag: 8ececa57-73b0-e827-a913-eef91c98308b
+		summarizeBy: none
+		sourceColumn: period
+
+		annotation SummarizationSetBy = User
+
+	column slice_type
+		dataType: string
+		lineageTag: 885990fd-4ec3-508f-14ac-ce9e574f8d69
+		summarizeBy: none
+		sourceColumn: slice_type
+
+		annotation SummarizationSetBy = User
+
+	column slice_label
+		dataType: string
+		lineageTag: 4b144b00-28f7-753f-3db8-38eed4a07536
+		summarizeBy: none
+		sourceColumn: slice_label
+		sortByColumn: slice_order
+
+		annotation SummarizationSetBy = User
+
+	column slice_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 03253fa6-41cb-cb45-9c77-6b4a39524a28
+		summarizeBy: none
+		sourceColumn: slice_order
+
+		annotation SummarizationSetBy = User
+
+	partition IntervalCoverage = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "IntervalCoverage.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Blanks = Table.ReplaceValue(Promoted, "", null, Replacer.ReplaceValue, {"coverage", "mean_width", "n", "undefined", "slice_order"}),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"slice", type text}, {"coverage", type number}, {"mean_width", type number}, {"n", type number}, {"undefined", type number}, {"period", type text}, {"slice_type", type text}, {"slice_label", type text}, {"slice_order", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

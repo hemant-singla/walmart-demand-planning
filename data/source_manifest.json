@@ -1,0 +1,33 @@
+{
+  "verified_at_utc": "2026-10-04T04:01:08.304066+00:00",
+  "original_source": "https://www.kaggle.com/competitions/m5-forecasting-accuracy/data",
+  "download_source": "https://zenodo.org/records/10203108",
+  "provenance": "Record lists University of Nicosia and states taken over from Kaggle.",
+  "redistribution": "Keep raw files local. Verify original data terms before redistributing.",
+  "files": [
+    {
+      "file": "calendar.csv",
+      "url": "https://zenodo.org/records/10203108/files/calendar.csv?download=1",
+      "bytes": 103469,
+      "published_md5": "3ffeab2991b0c8e861d008b39ea4c95c",
+      "verified_md5": "3ffeab2991b0c8e861d008b39ea4c95c",
+      "sha256": "d12b5914ef03e66649adf5dd9e996e6602251c22b7a6af8f1f7e3aa12f8860f5"
+    },
+    {
+      "file": "sales_train_evaluation.csv",
+      "url": "https://zenodo.org/records/10203108/files/sales_train_evaluation.csv?download=1",
+      "bytes": 121736518,
+      "published_md5": "b806dfc9f30a745102b708c09951f6aa",
+      "verified_md5": "b806dfc9f30a745102b708c09951f6aa",
+      "sha256": "4b4a47c44c38380d2a9168216fea8c9ff2f31b1ddb772f8a0995952a038b8aa0"
+    },
+    {
+      "file": "sell_prices.csv",
+      "url": "https://zenodo.org/records/10203108/files/sell_prices.csv?download=1",
+      "bytes": 203395785,
+      "published_md5": "08c591caa99e55daf3e0ccac913f7c85",
+      "verified_md5": "08c591caa99e55daf3e0ccac913f7c85",
+      "sha256": "9da3ad1f8b8ccacdbdc70612191dd375ec24a4ac6625c24b75b3bc60b0bed2ef"
+    }
+  ]
+}

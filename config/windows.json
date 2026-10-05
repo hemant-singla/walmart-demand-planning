@@ -1,0 +1,26 @@
+{
+  "_note": "Written before any model fitting or tuning (checkpoint 1). Day numbers refer to M5 d_<n>. An origin T means history d_1..d_T is known and forecasts cover d_(T+1)..d_(T+28). All origins are Sundays (T mod 7 == 2).",
+  "selection_cutoff": 730,
+  "last_day": 1941,
+  "horizon": 28,
+  "weekly_eval_days": 7,
+  "holdout": {
+    "forecast_origin": 1913,
+    "forecast_days": [1914, 1941],
+    "weekly_priority_origins": [1913, 1920, 1927, 1934],
+    "rule": "Untouched until config/frozen_choices.json exists. Weekly origins inside the holdout use holdout actuals only as already-observed history, never for choices."
+  },
+  "forecast_tuning_origins": [1661, 1689, 1717],
+  "forecast_validation_origins": [1745, 1773, 1801, 1829, 1857, 1885],
+  "pilot_origins": [1773, 1829, 1885],
+  "weekly_backtest_origins": {"first": 1493, "last": 1906, "step": 7},
+  "priority_warmup_origins": {"first": 1493, "last": 1577, "purpose": "build out-of-sample error history only"},
+  "priority_calibration_origins": {"first": 1584, "last": 1661, "purpose": "fix large-error event threshold, interval width multiplier, signal normalisation checks"},
+  "priority_validation_origins": {"first": 1668, "last": 1906, "purpose": "choose priority-score weights and compare rules; freeze before holdout"},
+  "lightgbm_training": {"origin_step": 7, "lookback_origins": 104, "rule": "training row (t,h) used at origin T only if t+h <= T"},
+  "random_priority_repeats": 200,
+  "seed": 20261003,
+  "capacities": [1, 5, 10],
+  "workload_capacity": 5,
+  "interval_nominal": 0.90
+}

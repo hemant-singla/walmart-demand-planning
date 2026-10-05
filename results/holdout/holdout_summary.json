@@ -1,0 +1,84 @@
+{
+  "holdout_forecast_origin": 1913,
+  "weekly_origins": [
+    1913,
+    1920,
+    1927,
+    1934
+  ],
+  "frozen_sha256": "0a084296c2a7f184b3050f8083364a5f82536dce3bb42a05413e2b62be01b0ac",
+  "forecast_metrics_all": [
+    {
+      "model": "ets",
+      "mean_rmsse": 0.7456,
+      "wape": 0.5859,
+      "bias": -0.0682
+    },
+    {
+      "model": "lgbm",
+      "mean_rmsse": 0.7333,
+      "wape": 0.5789,
+      "bias": -0.0494
+    },
+    {
+      "model": "snaive",
+      "mean_rmsse": 0.9322,
+      "wape": 0.6798,
+      "bias": -0.1064
+    }
+  ],
+  "interval_coverage_28d": 0.893,
+  "interval_coverage_weekly_h1_7": 0.8891,
+  "priority_k5": [
+    {
+      "rule": "bias",
+      "captured_ae_mean": 0.0859,
+      "captured_ne_mean": 0.03,
+      "precision": 0.25,
+      "recall": 0.0674
+    },
+    {
+      "rule": "proposed_median_0.2_0.1_0.7",
+      "captured_ae_mean": 0.1342,
+      "captured_ne_mean": 0.0253,
+      "precision": 0.15,
+      "recall": 0.0374
+    },
+    {
+      "rule": "recent_error",
+      "captured_ae_mean": 0.1277,
+      "captured_ne_mean": 0.0323,
+      "precision": 0.25,
+      "recall": 0.0688
+    },
+    {
+      "rule": "recent_error_norm",
+      "captured_ae_mean": 0.0384,
+      "captured_ne_mean": 0.0471,
+      "precision": 0.6,
+      "recall": 0.1562
+    },
+    {
+      "rule": "uncertainty",
+      "captured_ae_mean": 0.128,
+      "captured_ne_mean": 0.0238,
+      "precision": 0.1,
+      "recall": 0.0227
+    },
+    {
+      "rule": "volume",
+      "captured_ae_mean": 0.1299,
+      "captured_ne_mean": 0.0238,
+      "precision": 0.1,
+      "recall": 0.0261
+    },
+    {
+      "rule": "random (5-95% for min/max)",
+      "captured_ae_mean": 0.0255,
+      "captured_ne_mean": 0.0253,
+      "precision": 0.103,
+      "recall": 0.0261
+    }
+  ],
+  "recommended_rule": "proposed_median_0.2_0.1_0.7"
+}
