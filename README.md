@@ -26,6 +26,16 @@ This is not Walmart work. Nothing was deployed, and no savings, stockout or plan
 
 Full detail: `docs/memo.md` (2-page decision memo), `PROGRESS.md` (checkpoint log), `deck/` (project review slides), `powerbi/` (dashboard).
 
+## Power BI dashboard
+
+10-page report in `powerbi/` (23 tables, 43 measures; every figure reconciled against the Python/SQL results, 351/351 checks). Selected pages:
+
+| Overview | Forecast accuracy |
+|---|---|
+| ![Overview](docs/img/dashboard-overview.jpg) | ![Forecast accuracy](docs/img/dashboard-forecast-accuracy.jpg) |
+| **Forecast ranges** | **Product drill-down (failure case)** |
+| ![Forecast ranges](docs/img/dashboard-forecast-ranges.jpg) | ![Product drill-down](docs/img/dashboard-product-drilldown.jpg) |
+
 ## Repository layout
 
 ```
